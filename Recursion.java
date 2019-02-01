@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Recursion {
   public static double sqrt(double n, double tolerance) {
     return sqrt(n, tolerance/100, 1.0);
@@ -25,9 +27,24 @@ public class Recursion {
     return prev1 + prev2;
   }
 
+  public static ArrayList<Integer> makeAllSums(int n) {
+    ArrayList<Integer> sums = new ArrayList<Integer>();
+    makeAllSums(n, 0, sums);
+    return sums;
+  }
+
+  private static void makeAllSums(int n, int sum, ArrayList<Integer> sums) {
+    if (n > 0) {
+      makeAllSums(n - 1, sum, sums);
+      makeAllSums(n - 1, sum + n, sums);
+    } else {
+      sums.add(sum);
+    }
+  }
+
   public static void main(String[] args) {
-    for (int i = 0; i < 45; i++) {
-      System.out.println("fib("+i+") = "+fib(i));
+    for (int i = 0; i < 10; i++) {
+      System.out.println("makeAllSums("+i+") = "+makeAllSums(i));
     }
   }
 }
